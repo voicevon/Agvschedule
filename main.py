@@ -5,9 +5,18 @@ import time
 from bolt_nut import AgvBotAgent, AgvBotAgent, AgvBotQueue
 from task_queue import Task, TaskQueue
 
+class PathMap：
+    '''
+    This is a 2D map.   Stations are sit on.
+    Will help to find a path from Station-A to Station-B
+    1. Points Can be identified by RFid reader. or QR-code reader.
+    2. Track might be spilited in from of a Point.
+    '''
+    def __init__(self) -> None:
+        pass
 
 
-class AgvScheduler():
+class AgvScheduler:
     '''
     To upper lever users:
         AppendTask(pickup_from_staion, dropbox_to_station)
@@ -23,6 +32,17 @@ class AgvScheduler():
 
     @classmethod            
     def GetTrackPath(cls, start_point, end_point) -> list:
+        '''
+        Core function of the system.
+        Mainly will do:
+            1. Select an AGV, This has been done before invoking me.
+            This function will do:
+            2. Calculate Path-A: from current position to source station which is in the task.
+            3. Calculate Path-B: from source staion to target station.
+        Idea:
+            1. Read the map, Append points to the target path
+
+        '''
         path = []
         point = start_point
         if start_point > end_point:

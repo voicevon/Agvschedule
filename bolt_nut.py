@@ -49,6 +49,12 @@ class AgvBotQueue():
     @classmethod
     def FetchSingleAGV(cls) -> AgvBotAgent:
         '''
+        Core function of the system.
+        Mainly will do:
+            1. Select an AGV, 
+            2. Will Calculate Paths in other functions
+                2-1: the path from current position to source station which is in the task.
+                2-2: the path from source staion to target station.
         This can be very complex!
         '''
         for bot in cls.agvbots:
