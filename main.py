@@ -2,15 +2,23 @@
 
 import time
 
-from bolt_nut import AgvBotAgent, Task, TaskQueue, AgvBotAgent, AgvBotQueue,CommuUpper
+from bolt_nut import AgvBotAgent, AgvBotAgent, AgvBotQueue
+from task_queue import Task, TaskQueue
+
 
 
 class AgvScheduler():
     '''
-    
+    To upper lever users:
+        AppendTask(pickup_from_staion, dropbox_to_station)
+
     '''
     track_nodes_count = 8
     def __init__(self) -> None:
+        pass
+
+    @staticmethod
+    def AppendTask(pickup_from_staion, dropbox_to_station):
         pass
 
     @classmethod            
@@ -51,7 +59,7 @@ class AgvScheduler():
 
 if __name__ == '__main__':
     myScheduler = AgvScheduler()
-    myCommuUpper = CommuUpper()
+    # myCommuUpper = CommuUpper()
     AgvBotQueue.init(3)
 
     def onMqttReceived():
@@ -63,7 +71,13 @@ if __name__ == '__main__':
 
     while True:
         # onMqttReceived()
-        myCommuUpper.SpinOnce()
+        # myCommuUpper.SpinOnce()
+        task_id = 1
+        source_station = 2
+        target_station = 3
+        TaskQueue.AppendTask(task_id, source_station, target_station)
+        
         AgvScheduler.SpinOnce()
-        time.sleep(2)
         print(TaskQueue.show())
+        time.sleep(2)
+
