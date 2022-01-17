@@ -5,15 +5,6 @@ import time
 from bolt_nut import AgvBotAgent, AgvBotAgent, AgvBotQueue
 from task_queue import Task, TaskQueue
 
-class PathMap：
-    '''
-    This is a 2D map.   Stations are sit on.
-    Will help to find a path from Station-A to Station-B
-    1. Points Can be identified by RFid reader. or QR-code reader.
-    2. Track might be spilited in from of a Point.
-    '''
-    def __init__(self) -> None:
-        pass
 
 
 class AgvScheduler:
